@@ -10,43 +10,6 @@
 # https://help.pythonanywhere.com/pages/DebuggingImportError
 
 
-# +++++++++++ HELLO WORLD +++++++++++
-# A little pure-wsgi hello world we've cooked up, just
-# to prove everything works.  You should delete this
-# code to get your own working.
-
-
-HELLO_WORLD = """<html>
-<head>
-    <title>PythonAnywhere hosted web application</title>
-</head>
-<body>
-<h1>Hello, World!</h1>
-<p>
-    This is the default welcome page for a
-    <a href="https://www.pythonanywhere.com/">PythonAnywhere</a>
-    hosted web application.
-</p>
-<p>
-    Find out more about how to configure your own web application
-    by visiting the <a href="https://www.pythonanywhere.com/web_app_setup/">web app setup</a> page
-</p>
-</body>
-</html>"""
-
-
-def application(environ, start_response):
-    if environ.get('PATH_INFO') == '/':
-        status = '200 OK'
-        content = HELLO_WORLD
-    else:
-        status = '404 NOT FOUND'
-        content = 'Page not found.'
-    response_headers = [('Content-Type', 'text/html'), ('Content-Length', str(len(content)))]
-    start_response(status, response_headers)
-    yield content.encode('utf8')
-
-
 # Below are templates for Django and Flask.  You should update the file
 # appropriately for the web framework you're using, and then
 # click the 'Reload /yourdomain.com/' button on the 'Web' tab to make your site
@@ -73,44 +36,17 @@ def application(environ, start_response):
 
 # +++++++++++ DJANGO +++++++++++
 # To use your own django app use code like this:
-#import os
-#import sys
-#
+import os
+import sys
+
 ## assuming your django settings file is at '/home/ajdev8/mysite/mysite/settings.py'
 ## and your manage.py is is at '/home/ajdev8/mysite/manage.py'
-#path = '/home/ajdev8/mysite'
-#if path not in sys.path:
-#    sys.path.append(path)
-#
-#os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
-#
+path = '/home/ajdev8/projects/pollster_django_crash/pollster'
+if path not in sys.path:
+    sys.path.append(path)
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pollster.settings'
+
 ## then:
-#from django.core.wsgi import get_wsgi_application
-#application = get_wsgi_application()
-
-
-
-# +++++++++++ FLASK +++++++++++
-# Flask works like any other WSGI-compatible framework, we just need
-# to import the application.  Often Flask apps are called "app" so we
-# may need to rename it during the import:
-#
-#
-#import sys
-#
-## The "/home/ajdev8" below specifies your home
-## directory -- the rest should be the directory you uploaded your Flask
-## code to underneath the home directory.  So if you just ran
-## "git clone git@github.com/myusername/myproject.git"
-## ...or uploaded files to the directory "myproject", then you should
-## specify "/home/ajdev8/myproject"
-#path = '/home/ajdev8/path/to/flask_app_directory'
-#if path not in sys.path:
-#    sys.path.append(path)
-#
-#from main_flask_app_file import app as application  # noqa
-#
-# NB -- many Flask guides suggest you use a file called run.py; that's
-# not necessary on PythonAnywhere.  And you should make sure your code
-# does *not* invoke the flask development server with app.run(), as it
-# will prevent your wsgi file from working.
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()

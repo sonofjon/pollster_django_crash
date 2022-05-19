@@ -10,5 +10,7 @@
 	{% endfor %}
 </ul>
 
-<a class="btn btn-dark" href="{% url 'polls:detail' question.id %}">Rösta igen?</a>
+{% if next_question %}
+<a class="btn btn-secondary" href="{% url 'polls:detail' next_question.id %}">Nästa fråga</a>
+{% endif %}
 {% endblock %}

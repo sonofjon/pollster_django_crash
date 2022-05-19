@@ -22,7 +22,15 @@ def detail(request, question_id):
 # Get question and display results
 def results(request, question_id):
   question = get_object_or_404(Question, pk=question_id)
-  return render(request, 'polls/results.html', { 'question': question })
+  next_question = None
+  try:
+      next_question = Question.objects.filter(id__gt=question_id)[:1][0]
+  except IndexError:
+      # TODO: handle this error
+      pass
+  context = {'question': question,
+             'next_question': next_question,}
+  return render(request, 'polls/results.html', context)
 
 # Vote for a question choice
 def vote(request, question_id):

@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+# from .models import Question
 
 def index(request):
-  return render(request, 'pages/index.html')
+    return redirect('polls/1/')
+    # question = Question.objects.first()
+    # return redirect(question)

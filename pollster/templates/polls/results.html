@@ -12,5 +12,7 @@
 
 {% if next_question %}
 <a class="btn btn-secondary" href="{% url 'polls:detail' next_question.id %}">Nästa fråga</a>
+{% else %}
+<a class="btn btn-secondary" href="{% url 'polls:thanks' %}">Avsluta</a>
 {% endif %}
 {% endblock %}

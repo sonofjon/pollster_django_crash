@@ -32,6 +32,10 @@ def results(request, question_id):
              'next_question': next_question,}
   return render(request, 'polls/results.html', context)
 
+# Display thanks
+def thanks(request):
+  return render(request, 'polls/thanks.html')
+
 # Vote for a question choice
 def vote(request, question_id):
     # print(request.POST['choice'])

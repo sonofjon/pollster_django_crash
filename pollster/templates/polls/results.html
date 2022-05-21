@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="mb-5 text-center">{{ question.question_text }}</h1>
+    <h1 class="mb-5 text-center">{{ question.question_text }}</h1>
 
-<p>Narrativt svar: Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
-</p>
+    <p>Narrativt svar: Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.</p>
 
-<ul class="list-group mb-5">
-	{% for choice in question.choice_set.all %}
-	<li class="list-group-item">
-		{{ choice.choice_text }}  <span class="badge badge-success float-right">{{ choice.votes }} vote{{ choice.votes | pluralize }}</span>
-	</li>
-	{% endfor %}
-</ul>
+    <ul class="list-group mb-5">
+        {% for choice in question.choice_set.all %}
+            <li class="list-group-item">
+                {{ choice.choice_text }}  <span class="badge badge-success float-right">{{ choice.votes }} vote{{ choice.votes | pluralize }}</span>
+            </li>
+        {% endfor %}
+    </ul>
 
-{% if next_question %}
-<a class="btn btn-secondary" href="{% url 'polls:detail' next_question.id %}">Nästa fråga</a>
-{% else %}
-<a class="btn btn-secondary" href="{% url 'polls:thanks' %}">Avsluta</a>
-{% endif %}
+    {% if next_question %}
+        <a class="btn btn-secondary" href="{% url 'polls:detail' next_question.id %}">Nästa fråga</a>
+    {% else %}
+        <a class="btn btn-secondary" href="{% url 'polls:thanks' %}">Avsluta</a>
+    {% endif %}
 {% endblock %}

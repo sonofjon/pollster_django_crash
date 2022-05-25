@@ -9,7 +9,7 @@ admin.site.index_title = "Welcome to the Pollster admin area"
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
-    extra = 3
+    max_num = 2
 
 
 class AnswerInline(admin.TabularInline):

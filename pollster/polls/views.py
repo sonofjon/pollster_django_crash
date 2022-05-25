@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
-from .models import Question, Choice
+from .models import Question, Answer, Choice
 
 # Get questions and display them
 def index(request):
@@ -22,6 +22,7 @@ def detail(request, question_id):
 # Get question and display results
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
+    answer = get_object_or_404(Answer, pk=question_id)
     next_question = None
     try:
         next_question = Question.objects.filter(id__gt=question_id)[:1][0]
@@ -29,6 +30,7 @@ def results(request, question_id):
         # TODO: handle this error
         pass
     context = {'question': question,
+               'answer': answer,
                'next_question': next_question,}
     return render(request, 'polls/results.html', context)
 

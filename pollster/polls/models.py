@@ -9,6 +9,14 @@ class Question(models.Model):
         return self.question_text
 
 
+class Answer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer_text = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.answer_text
+
+
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)

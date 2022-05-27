@@ -9,7 +9,16 @@ class Question(models.Model):
         return self.question_text
 
 
-class Answer(models.Model):
+class Image(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="images/")
+#     pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.image
+
+
+    class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer_text = models.CharField(max_length=1000)
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Question, Answer, Choice
+from .models import Question, Image, Answer, Choice
 
 admin.site.site_header = "Pollster Admin"
 admin.site.site_title = "Pollster Admin Area"
@@ -17,10 +17,15 @@ class AnswerInline(admin.TabularInline):
     max_num = 1
 
 
+class ImageInline(admin.TabularInline):
+    model = Image
+    max_num = 1
+
+
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [(None, {'fields': ['question_text']}),
                  ('Date Information', {'fields': ['pub_date']}), ]
-    inlines = [AnswerInline, ChoiceInline]
+    inlines = [ImageInline, AnswerInline, ChoiceInline]
 
 
 # admin.site.register(Question)

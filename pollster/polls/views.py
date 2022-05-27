@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
-from .models import Question, Answer, Choice
+from .models import Question, Image, Answer, Choice
 
 # Get questions and display them
 def index(request):
@@ -17,6 +17,12 @@ def detail(request, question_id):
       question = Question.objects.get(pk=question_id)
   except Question.DoesNotExist:
       raise Http404("Question does not exist")
+  try:
+      image = Image.objects.get(pk=question_id)
+  except Image.DoesNotExist:
+      raise Http404("Image does not exist")
+  context = {'question': question,
+             'image': image,}
   return render(request, 'polls/detail.html', { 'question': question })
 
 # Get question and display results

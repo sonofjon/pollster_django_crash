@@ -2,9 +2,10 @@
 {% block content %}
     <h1 class="mb-5 text-center">{{ question.question_text }}</h1>
 
-    <!-- <img src="" /> -->
+    <p class="text-center mb-3">{{ question.answer_text }}</p>
 
-    <p class="text-center mb-3">{{ answer.answer_text }}</p>
+    <!-- <img src="" /> -->
+    <p class="text-center mb-3">{{ question.answer_text }}</p>
 
     <ul class="list-group mb-5">
         {% for choice in question.choice_set.all %}

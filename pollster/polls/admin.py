@@ -15,6 +15,7 @@ class ChoiceInline(admin.TabularInline):
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [(None, {'fields': ['question_text']}),
                  (None, {'fields': ['answer_text']}),
+                 (None, {'fields': ['image']}),
                  ('Date Information', {'fields': ['pub_date']}), ]
     inlines = [ChoiceInline]
 

@@ -2,9 +2,9 @@
 {% block content %}
     <h1 class="mb-3 text-center">{{ question.question_text }}</h1>
 
-    <p class="text-center mb-3">{{ question.answer_text }}</p>
+    {% load static %}
+    <img class="img-fluid rounded-lg mb-3" src="{% get_media_prefix %}{{ question.image }}" alt=">{{ question.question_text }}"/>
 
-    <!-- <img src="" /> -->
     <p class="text-center mb-3">{{ question.answer_text }}</p>
 
     <ul class="list-group mb-5">

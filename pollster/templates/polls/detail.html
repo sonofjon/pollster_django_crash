@@ -8,8 +8,10 @@
         </p>
     {% endif %}
 
-    {% load static %}
-    <img class="img-fluid rounded-lg mb-3" src="{% get_media_prefix %}{{ question.image }}" alt=">{{ question.question_text }}"/>
+    <div class="text-center">
+        {% load static %}
+        <img class="img-fluid rounded-lg mb-3" src="{% get_media_prefix %}{{ question.image }}" alt=">{{ question.question_text }}"/>
+    </div>
 
     <form action="{% url 'polls:vote' question.id %}" method="post">
         {% csrf_token %}

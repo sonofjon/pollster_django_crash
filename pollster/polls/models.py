@@ -18,7 +18,7 @@ class Image(models.Model):
         return self.image
 
 
-    class Answer(models.Model):
+class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer_text = models.CharField(max_length=1000)
 

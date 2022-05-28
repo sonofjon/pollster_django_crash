@@ -3,7 +3,7 @@ from django.db import models
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
-    answer_text = models.CharField(max_length=1000)
+    answer_text = models.CharField(max_length=1000, default=None)
     image = models.ImageField(upload_to="images/", default=None)
     pub_date = models.DateTimeField('date published')
 

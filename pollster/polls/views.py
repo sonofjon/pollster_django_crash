@@ -21,20 +21,6 @@ def detail(request, question_id):
   return render(request, 'polls/detail.html', { 'question': question })
 
 
-# Get question and display results
-def results(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    next_question = None
-    try:
-        next_question = Question.objects.filter(id__gt=question_id)[:1][0]
-    except IndexError:
-        # TODO: handle this error
-        pass
-    context = {'question': question,
-               'next_question': next_question,}
-    return render(request, 'polls/results.html', context)
-
-
 # Display thanks
 def thanks(request):
     return render(request, 'polls/thanks.html')
@@ -44,6 +30,12 @@ def thanks(request):
 def vote(request, question_id):
     # print(request.POST['choice'])
     question = get_object_or_404(Question, pk=question_id)
+    next_question = None
+    try:
+        next_question = Question.objects.filter(id__gt=question_id)[:1][0]
+    except IndexError:
+        # TODO: handle this error
+        pass
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
@@ -58,4 +50,7 @@ def vote(request, question_id):
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        if next_question:
+            return HttpResponseRedirect(reverse('polls:detail', args=(next_question.id,)))
+        else:
+            return HttpResponseRedirect(reverse('polls:thanks'))

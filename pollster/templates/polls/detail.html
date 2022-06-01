@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="text-center">
+
+    <figure class="figure mt-3">
         {% load static %}
-        <img class="img-fluid rounded-lg mt-3 mb-3" src="{% get_media_prefix %}{{ question.image }}" alt=""/>
-    </div>
+        <img class="figure-img img-fluid rounded-lg" src="{% get_media_prefix %}{{ question.image }}" alt=""/>
+        <figcaption class="figure-caption text-right">Fråga {{ index }} av {{ count }}</figcaption>
+    </figure>
 
     {% if error_message %}
         <p class="alert alert-danger">

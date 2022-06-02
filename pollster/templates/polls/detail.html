@@ -3,7 +3,7 @@
 
     <figure class="figure mt-3">
         {% load static %}
-        <img class="figure-img img-fluid rounded-lg" src="{% get_media_prefix %}{{ question.image }}" alt=""/>
+        <img class="figure-img img-fluid rounded-lg" src="{% get_media_prefix %}{{ question.image }}" alt="{{ question.question_text }}"/>
         <figcaption class="figure-caption text-right">Fråga {{ index }} av {{ count }}</figcaption>
     </figure>
 

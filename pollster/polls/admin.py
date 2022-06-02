@@ -13,7 +13,8 @@ class ChoiceInline(admin.TabularInline):
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    fieldsets = [(None, {'fields': ['image']}),]
+    fieldsets = [(None, {'fields': ['question_text']}),
+                 (None, {'fields': ['image']}),]
     inlines = [ChoiceInline]
 
 

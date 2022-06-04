@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% block content %} 
+    <h1 class="text-center mt-3 mb-3">Sammanställning</h1>
+    {% if question_list %}
+        {% for question in question_list %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="lead">Fråga {{ forloop.counter }} {{ question.question_text }}</p>
+                    <p>Du röstade på "x"</p>
+                    <!-- <p>Du röstade på "{{ question.choice }}"</p> -->
+                    <p>Svar:</p>
+                    <ul class="list-group">
+                        {% for choice in question.choice_set.all %}
+	                    <li class="list-group-item">
+		                {{ choice.choice_text }}  <span class="badge badge-success float-right">{{ choice.votes }} röst{{ choice.votes | pluralize:"er" }}</span>
+	                    </li>
+	                {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No polls available</p>
+    {% endif %}
+{% endblock %}

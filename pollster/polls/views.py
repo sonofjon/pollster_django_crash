@@ -29,6 +29,13 @@ def thanks(request):
     return render(request, 'polls/thanks.html')
 
 
+# Display summary
+def summary(request):
+    question_list = Question.objects.all()
+    context = {'question_list': question_list}
+    return render(request, 'polls/summary.html', context)
+
+
 # Vote for a question choice
 def vote(request, question_id):
     # print(request.POST['choice'])

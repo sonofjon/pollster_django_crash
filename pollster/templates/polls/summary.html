@@ -5,8 +5,8 @@
         {% for question in question_list %}
             <div class="card mb-3">
                 <div class="card-body">
-                    <p class="lead">Fråga {{ question.question_text }}</p>
-                    <!-- <p>Du röstade på "x"</p> -->
+                    <p class="lead">Fråga {{ forloop.counter }} {{ question.question_text }}</p>
+                    <p>Du röstade på "{{request.session.choice_1}}"</p>
                     <!-- <p>Du röstade på "{{ question.choice }}"</p> -->
                     <p>Svar:</p>
                     <ul class="list-group">

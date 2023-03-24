@@ -57,6 +57,7 @@ def vote(request, question_id):
     else:
         selected_choice.votes += 1
         selected_choice.save()
+        request.session['choice'+'_'+str(question_id)] = selected_choice.choice_text # save value to session
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.

@@ -10,6 +10,7 @@ admin.site.index_title = "Welcome to the Pollster admin area"
 class ChoiceInline(admin.TabularInline):
     model = Choice
     max_num = 2
+    # prepopulated_fields = {"slug": ("choice_text",)}
 
 
 class QuestionAdmin(admin.ModelAdmin):
